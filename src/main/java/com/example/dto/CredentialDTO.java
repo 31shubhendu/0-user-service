@@ -9,6 +9,6 @@ import lombok.Setter;
 @Getter
 public class CredentialDTO {
 	private Long username;
-	private String password;
+//	private String password;
 	private RoleBaseAuthority roleBaseAuthority;
 }

@@ -57,4 +57,13 @@ public class GlobalExceptionHandler {
 		errorApi.setError(errors);
 		return new ResponseEntity<>(errorApi, HttpStatus.BAD_REQUEST);
 	}
+	@ExceptionHandler(ResourceNotFoundException.class)
+	public ResponseEntity<ErrorApi> handleException(ResourceNotFoundException ex){
+		ErrorApi errorApi=new ErrorApi();
+		errorApi.setLocalDateTime(LocalDateTime.now());
+		errorApi.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase());
+		errorApi.setMessage("external service error");
+		errorApi.setError(ex.getMessage());
+		return new ResponseEntity<>(errorApi, HttpStatus.INTERNAL_SERVER_ERROR);
+	}
 }
